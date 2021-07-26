@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  var level = 0;
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +58,7 @@ class Home extends StatelessWidget {
             Text('CURRENT LEVEL',
                 style: TextStyle(color: Colors.grey, letterSpacing: 2.0)),
             SizedBox(height: 10.0),
-            Text('2',
+            Text( level.toString(),
                 style: TextStyle(
                   color: Colors.amberAccent[200],
                   fontWeight: FontWeight.bold,
@@ -67,11 +76,23 @@ class Home extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.grey[400],
                         letterSpacing: 1.0,
-                        fontSize: 18))
+                        fontSize: 18)
+                ),
+
               ],
             )
+
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            level += 1;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[800],
       ),
     );
   }
